@@ -8,10 +8,11 @@ interface InputProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 export const Input: React.FC<InputProps> = ({
-  placeholder = "Введите текст",
   extraClass = "",
   type = "text",
+  placeholder = type === "text" ? "Введите текст" : "Введите число",
   maxLength,
+  min,
   max,
   isLimitText = false,
   ...rest
@@ -19,7 +20,7 @@ export const Input: React.FC<InputProps> = ({
   const limitText =
     type === "text"
       ? `Максимум — ${maxLength} символа`
-      : `Максимальное число — ${max}`;
+      : `Введите число от ${min} до ${max}`;
 
   return (
     <div className={`${styles.content} ${extraClass}`}>

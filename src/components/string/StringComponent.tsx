@@ -5,41 +5,46 @@ import { Input } from "../ui/input/input";
 import { Circle } from "../ui/circle/circle";
 import { Button } from "../ui/button/button";
 
-import { reverse } from "./algorithm";
+import { reverse } from "./utils";
 import { changeElementsState, timeoutPromise } from "../../utils/utils";
+import { DELAY_IN_MS } from "../../constants/delays";
 
 import { ElementStates } from "../../types/element-states";
 import { TCharElement } from "../../types/sortingElements";
 
-import styles from "./string.module.css";
+import styles from "./StringComponent.module.css";
 
 export const StringComponent: React.FC = () => {
   const [value, setValue] = useState("");
   const [sortingElements, setSortingElements] = useState<TCharElement[]>([]);
-  const [isButtonBlocked, setIsButtonBlocked] = useState(false);
+  const [isLoader, setIsLoader] = useState(false);
 
   const visualizeAlgorithm = async () => {
-    setIsButtonBlocked(true);
-    const elements = value
-      .split("")
-      .map((char, index) => ({
-        char,
-        id: index,
-        state: ElementStates.Default,
-      }));
-    setSortingElements(elements);
-    await timeoutPromise(1000);
-    const steps = Math.ceil(elements.length / 2);
+    setIsLoader(true);
+    const initialOrder: TCharElement[] = value.split("").map((char, index) => ({
+      char,
+      id: index,
+      state: ElementStates.Default,
+    }));
+    setSortingElements(initialOrder);
+    const reversedOrder = reverse([...initialOrder]);
+    const steps = Math.ceil(initialOrder.length / 2);
     for (let i = 0; i < steps; i++) {
-      const curElements = [elements[i], elements[elements.length - i - 1]];
+      await timeoutPromise(DELAY_IN_MS);
+      const curElements = [
+        initialOrder[i],
+        initialOrder[initialOrder.length - i - 1],
+      ];
       changeElementsState(curElements, ElementStates.Changing);
-      setSortingElements([...elements]);
-      await timeoutPromise(1000);
-      reverse(elements, i);
+      setSortingElements([...initialOrder]);
+      await timeoutPromise(DELAY_IN_MS);
+      initialOrder[i] = reversedOrder[i];
+      initialOrder[initialOrder.length - i - 1] =
+        reversedOrder[initialOrder.length - i - 1];
       changeElementsState(curElements, ElementStates.Modified);
-      setSortingElements([...elements]);
+      setSortingElements([...initialOrder]);
     }
-    setIsButtonBlocked(false);
+    setIsLoader(false);
   };
 
   return (
@@ -56,10 +61,10 @@ export const StringComponent: React.FC = () => {
           onClick={visualizeAlgorithm}
           text="Развернуть"
           extraClass={styles.button}
-          isLoader={isButtonBlocked}
-        >
-          Развернуть
-        </Button>
+          isLoader={isLoader}
+        />
+{/*          Развернуть
+        </Button>*/}
         <div className={styles.algorithm}>
           {sortingElements.length > 0 &&
             sortingElements.map((element) => (
