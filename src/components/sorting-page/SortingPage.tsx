@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 
-import styles from "./SortingPage.module.css";
+import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { RadioInput } from "../ui/radio-input/radio-input";
 import { Button } from "../ui/button/button";
-import { Direction } from "../../types/direction";
-import { generateArray, sortBubbleWay, sortSelectionWay } from "./utils";
-import { sortingArray } from "../../constants/arrayOptions";
 import { Column } from "../ui/column/column";
-import { SortingWay, TBarElement } from "../../types/sortingElements";
+
+import { generateArray, sortBubbleWay, sortSelectionWay } from "./utils";
+import { randomArrayOptions } from "../../constants/arrayOptions";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+
+import { SortingWay, TBarElement } from "../../types/sortingElements";
+import { Direction } from "../../types/buttonEnums";
+
+import styles from "./SortingPage.module.css";
 
 export const SortingPage: React.FC = () => {
   const [sortingWay, setSortingWay] = useState<SortingWay>(
@@ -20,7 +23,7 @@ export const SortingPage: React.FC = () => {
   const [loaderPosition, setLoaderPosition] = useState<Direction | null>(null);
 
   useEffect(() => {
-    setArray(generateArray(sortingArray));
+    setArray(generateArray(randomArrayOptions));
   }, []);
 
   const visualizeAlgorithm = async (direction: Direction) => {
@@ -52,7 +55,6 @@ export const SortingPage: React.FC = () => {
             disabled={isRunning}
           />
         </div>
-        <div className={styles.algorithm}></div>
         <div className={styles.directionButtons}>
           <Button
             text="По возрастанию"
@@ -74,7 +76,7 @@ export const SortingPage: React.FC = () => {
         <Button
           text="Новый массив"
           extraClass={`${styles.button} ${styles.generateButton}`}
-          onClick={() => setArray(generateArray(sortingArray))}
+          onClick={() => setArray(generateArray(randomArrayOptions))}
           disabled={isRunning}
         />
         <div className={styles.algorithm}>

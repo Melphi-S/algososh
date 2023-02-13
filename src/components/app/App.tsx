@@ -6,7 +6,7 @@ import { MainPage } from "../main-page/main-page";
 import { QueuePage } from "../queue-page/queue-page";
 import { StringComponent } from "../string/StringComponent";
 import { SortingPage } from "../sorting-page/SortingPage";
-import { StackPage } from "../stack-page/stack-page";
+import { StackPage } from "../stack-page/StackPage";
 
 import "./app.css";
 

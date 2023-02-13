@@ -1,4 +1,4 @@
-export const generateFibArray = (number: number): number[] => {
+export const generateFibArray = (number: number, ): number[] => {
     let arr: number[] = [0, 1];
     for (let i = 2; i <= number; i++) {
         arr.push(arr[i - 2] + arr[i - 1]);

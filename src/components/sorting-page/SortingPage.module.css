@@ -34,8 +34,7 @@
 .algorithm {
     display: flex;
     justify-content: center;
-    align-content: end;
-    align-items: end;
+    align-items: flex-end;
     gap: 10px;
     grid-area: algorithm;
     height: 368px;

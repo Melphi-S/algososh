@@ -4,6 +4,7 @@ export type TCharElement = {
     char: string;
     id: number;
     state?: ElementStates;
+    head?: string;
 }
 
 export type TBarElement = {

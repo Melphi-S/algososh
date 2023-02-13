@@ -1,6 +1,6 @@
 import {TRandomArrayOptions} from "../types/sortingElements";
 
-export const sortingArray: TRandomArrayOptions = {
+export const randomArrayOptions: TRandomArrayOptions = {
     minNumber: 0,
     maxNumber: 100,
     minLength: 3,

@@ -5,7 +5,7 @@ import {
   timeoutPromise,
 } from "../../utils/utils";
 import { TBarElement, TRandomArrayOptions } from "../../types/sortingElements";
-import { Direction } from "../../types/direction";
+import { Direction } from "../../types/buttonEnums";
 import React from "react";
 import { ElementStates } from "../../types/element-states";
 
@@ -47,7 +47,7 @@ export const sortSelectionWay = async (
   for (let i = 0; i < array.length - 1; i++) {
     let indexToSwap = i;
 
-    changeElementsState([array[i]], ElementStates.Swaping);
+    changeElementsState([array[i]], ElementStates.Swapping);
     for (let j = i + 1; j < array.length; j++) {
       changeElementsState([array[j]], ElementStates.Changing);
       stateCb([...array]);
@@ -57,7 +57,7 @@ export const sortSelectionWay = async (
             changeElementsState([array[indexToSwap]], ElementStates.Default);
           }
           indexToSwap = j;
-          changeElementsState([array[indexToSwap]], ElementStates.Swaping);
+          changeElementsState([array[indexToSwap]], ElementStates.Swapping);
         } else {
           changeElementsState([array[j]], ElementStates.Default);
         }
@@ -67,7 +67,7 @@ export const sortSelectionWay = async (
             changeElementsState([array[indexToSwap]], ElementStates.Default);
           }
           indexToSwap = j;
-          changeElementsState([array[indexToSwap]], ElementStates.Swaping);
+          changeElementsState([array[indexToSwap]], ElementStates.Swapping);
         } else {
           changeElementsState([array[j]], ElementStates.Default);
         }

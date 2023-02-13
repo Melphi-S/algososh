@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.input {
+  width: 377px;
+}
+
+.directionButtons {
+  display: flex;
+  gap: 12px;
+  grid-area: direction;
+  margin-right: 68px;
+}
+
+.button {
+  width: 120px;
+}
+
+.algorithm {
+  display: flex;
+  justify-content: center;
+  margin-top: 52px;
+  gap: 16px;
+}

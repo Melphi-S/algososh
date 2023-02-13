@@ -1,12 +1,16 @@
 import React, { useMemo, useState } from "react";
+
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
-import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+
 import { timeoutPromise } from "../../utils/utils";
 import { generateFibArray } from "./utils";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+
 import { TCharElement } from "../../types/sortingElements";
+
 import styles from "./FibonacciPage.module.css";
 
 export const FibonacciPage: React.FC = () => {

@@ -6,8 +6,7 @@ import { Circle } from "../ui/circle/circle";
 import { Button } from "../ui/button/button";
 
 import { reverse } from "./utils";
-import { changeElementsState, timeoutPromise } from "../../utils/utils";
-import { DELAY_IN_MS } from "../../constants/delays";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 import { ElementStates } from "../../types/element-states";
 import { TCharElement } from "../../types/sortingElements";
@@ -27,23 +26,7 @@ export const StringComponent: React.FC = () => {
       state: ElementStates.Default,
     }));
     setSortingElements(initialOrder);
-    const reversedOrder = reverse([...initialOrder]);
-    const steps = Math.ceil(initialOrder.length / 2);
-    for (let i = 0; i < steps; i++) {
-      await timeoutPromise(DELAY_IN_MS);
-      const curElements = [
-        initialOrder[i],
-        initialOrder[initialOrder.length - i - 1],
-      ];
-      changeElementsState(curElements, ElementStates.Changing);
-      setSortingElements([...initialOrder]);
-      await timeoutPromise(DELAY_IN_MS);
-      initialOrder[i] = reversedOrder[i];
-      initialOrder[initialOrder.length - i - 1] =
-        reversedOrder[initialOrder.length - i - 1];
-      changeElementsState(curElements, ElementStates.Modified);
-      setSortingElements([...initialOrder]);
-    }
+    await reverse(initialOrder, setSortingElements, SHORT_DELAY_IN_MS);
     setIsLoader(false);
   };
 
@@ -63,7 +46,7 @@ export const StringComponent: React.FC = () => {
           extraClass={styles.button}
           isLoader={isLoader}
         />
-{/*          Развернуть
+        {/*          Развернуть
         </Button>*/}
         <div className={styles.algorithm}>
           {sortingElements.length > 0 &&
