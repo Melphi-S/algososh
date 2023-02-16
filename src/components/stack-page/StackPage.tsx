@@ -5,7 +5,7 @@ import { Button } from "../ui/button/button";
 import { Input } from "../ui/input/input";
 import { Circle } from "../ui/circle/circle";
 
-import { changeElementsState, timeoutPromise } from "../../utils/utils";
+import {changeElementsState, cloneState, timeoutPromise} from "../../utils/utils";
 import { Stack } from "./utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
@@ -36,7 +36,7 @@ export const StackPage: React.FC = () => {
     }
   };
 
-  const pushElement = async () => {
+  const visualizePushing = async () => {
     setLoaderPosition(Action.Add);
     setValue("");
     const newElement: TCharElement = {
@@ -47,31 +47,31 @@ export const StackPage: React.FC = () => {
     clearPrevPeak();
     stack.push(newElement);
     changeElementsState([stack.peak()], ElementStates.Changing);
-    setStackElements([...stack.getStack()]);
+    setStackElements(cloneState(stack.getStack()));
     await timeoutPromise(SHORT_DELAY_IN_MS);
     changeElementsState([stack.peak()], ElementStates.Default);
-    setStackElements([...stack.getStack()]);
+    setStackElements(cloneState(stack.getStack()));
     setLoaderPosition(null);
   };
 
-  const popElement = async () => {
+  const visualizePopping = async () => {
     setLoaderPosition(Action.Delete);
     const prevPeak = stack.peak();
     if (prevPeak) {
       changeElementsState([prevPeak], ElementStates.Changing);
     }
-    setStackElements([...stack.getStack()]);
+    setStackElements(cloneState(stack.getStack()));
     await timeoutPromise(SHORT_DELAY_IN_MS);
     clearPrevPeak();
     stack.pop();
     setNewPeak();
-    setStackElements([...stack.getStack()]);
+    setStackElements(cloneState(stack.getStack()));
     setLoaderPosition(null);
   };
 
   const clearStack = () => {
     stack.clear();
-    setStackElements([...stack.getStack()]);
+    setStackElements(cloneState(stack.getStack()));
   };
 
   return (
@@ -89,23 +89,23 @@ export const StackPage: React.FC = () => {
             <Button
               text="Добавить"
               extraClass={styles.button}
-              onClick={() => pushElement()}
-              disabled={!value}
+              onClick={visualizePushing}
+              disabled={!value || loaderPosition !== null || stack.getSize() >= 10}
               isLoader={loaderPosition === Action.Add}
             />
             <Button
               text="Удалить"
               extraClass={styles.button}
-              onClick={() => popElement()}
-              disabled={!stack.peak()}
+              onClick={visualizePopping}
+              disabled={!stack.peak() || loaderPosition !== null}
               isLoader={loaderPosition === Action.Delete}
             />
           </div>
           <Button
             text="Очистить"
             extraClass={styles.button}
-            onClick={() => clearStack()}
-            disabled={!stack.peak()}
+            onClick={clearStack}
+            disabled={!stack.peak() || loaderPosition !== null}
           />
         </div>
         <div className={styles.algorithm}>

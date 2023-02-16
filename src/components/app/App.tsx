@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { FibonacciPage } from "../fibonacci-page/FibonacciPage";
 import { ListPage } from "../list-page/list-page";
 import { MainPage } from "../main-page/main-page";
-import { QueuePage } from "../queue-page/queue-page";
+import { QueuePage } from "../queue-page/QueuePage";
 import { StringComponent } from "../string/StringComponent";
 import { SortingPage } from "../sorting-page/SortingPage";
 import { StackPage } from "../stack-page/StackPage";

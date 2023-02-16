@@ -45,9 +45,8 @@ export const StringComponent: React.FC = () => {
           text="Развернуть"
           extraClass={styles.button}
           isLoader={isLoader}
+          disabled={!value}
         />
-        {/*          Развернуть
-        </Button>*/}
         <div className={styles.algorithm}>
           {sortingElements.length > 0 &&
             sortingElements.map((element) => (

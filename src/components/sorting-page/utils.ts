@@ -1,5 +1,5 @@
 import {
-  changeElementsState,
+  changeElementsState, cloneState,
   getRandomNumber,
   swap,
   timeoutPromise,
@@ -19,7 +19,7 @@ export const sortBubbleWay = async (
     for (let i = 0; i < j; i++) {
       const curElements = [array[i], array[i + 1]];
       changeElementsState(curElements, ElementStates.Changing);
-      stateCb([...array]);
+      stateCb(cloneState(array));
       if (direction === Direction.Ascending) {
         if (array[i].number > array[i + 1].number) {
           swap(array, i, i + 1);
@@ -31,10 +31,10 @@ export const sortBubbleWay = async (
       }
       await timeoutPromise(timeout);
       changeElementsState([array[i]], ElementStates.Default);
-      stateCb([...array]);
+      stateCb(cloneState(array));
     }
     changeElementsState([array[j]], ElementStates.Modified);
-    stateCb([...array]);
+    stateCb(cloneState(array));
   }
 };
 
@@ -50,7 +50,7 @@ export const sortSelectionWay = async (
     changeElementsState([array[i]], ElementStates.Swapping);
     for (let j = i + 1; j < array.length; j++) {
       changeElementsState([array[j]], ElementStates.Changing);
-      stateCb([...array]);
+      stateCb(cloneState(array));
       if (direction === Direction.Ascending) {
         if (array[j].number < array[indexToSwap].number) {
           if (indexToSwap !== i) {
@@ -79,10 +79,10 @@ export const sortSelectionWay = async (
     if (indexToSwap !== i) {
       changeElementsState([array[indexToSwap]], ElementStates.Default);
     }
-    stateCb([...array]);
+    stateCb(cloneState(array));
   }
   changeElementsState([array[array.length - 1]], ElementStates.Modified);
-  stateCb([...array]);
+  stateCb(cloneState(array));
 };
 
 export const generateArray = (options: TRandomArrayOptions): TBarElement[] => {

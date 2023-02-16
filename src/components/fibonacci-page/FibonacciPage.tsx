@@ -18,11 +18,6 @@ export const FibonacciPage: React.FC = () => {
   const [fibArray, setFibArray] = useState<TCharElement[]>([]);
   const [isLoader, setIsLoader] = useState(false);
 
-  const isButtonDisabled = useMemo(
-    () => Number(value) < 0 || Number(value) > 19,
-    [value]
-  );
-
   const visualizeAlgorithm = async () => {
     setIsLoader(true);
     const finalArray = generateFibArray(Number(value)).map((char, index) => ({
@@ -54,7 +49,7 @@ export const FibonacciPage: React.FC = () => {
           text="Рассчитать"
           extraClass={styles.button}
           isLoader={isLoader}
-          disabled={isButtonDisabled}
+          disabled={Number(value) < 0 || Number(value) > 19 || value === ""}
         />
         <div className={styles.algorithm}>
           {fibArray.length > 0 &&

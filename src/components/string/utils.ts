@@ -11,12 +11,12 @@ export const reverse = async (
 ) => {
   let start = 0;
   let end = elements.length - 1;
-  while (start < end) {
+  while (start <= end) {
     await timeoutPromise(timeout);
     changeElementsState([elements[start], elements[end]], ElementStates.Changing);
-    swap(elements, start, end);
     stateCb([...elements]);
     await timeoutPromise(DELAY_IN_MS);
+    swap(elements, start, end);
     changeElementsState([elements[start], elements[end]], ElementStates.Modified);
     stateCb([...elements]);
     start++;
