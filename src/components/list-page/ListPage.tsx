@@ -225,7 +225,7 @@ export const ListPage: React.FC = () => {
       <div className={styles.wrapper}>
         <fieldset className={styles.fieldset}>
           <Input
-            maxLength={2}
+            maxLength={4}
             isLimitText
             extraClass={styles.input}
             value={value}

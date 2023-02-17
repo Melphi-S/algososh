@@ -81,7 +81,7 @@ export const StackPage: React.FC = () => {
           <Input
             value={value}
             onChange={(evt) => setValue(evt.currentTarget.value)}
-            maxLength={2}
+            maxLength={4}
             isLimitText
             extraClass={styles.input}
           />

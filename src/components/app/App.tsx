@@ -8,11 +8,11 @@ import { StringComponent } from "../string/StringComponent";
 import { SortingPage } from "../sorting-page/SortingPage";
 import { StackPage } from "../stack-page/StackPage";
 
-import "./app.css";
+import styles from './app.module.css'
 
 function App() {
   return (
-    <div className="app">
+    <div className={styles.app}>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>
