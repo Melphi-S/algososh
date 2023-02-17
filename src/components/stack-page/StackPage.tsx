@@ -77,11 +77,11 @@ export const StackPage: React.FC = () => {
   return (
     <SolutionLayout title="Стек">
       <div className={styles.wrapper}>
-        <div className={styles.options}>
+        <fieldset className={styles.fieldset}>
           <Input
             value={value}
             onChange={(evt) => setValue(evt.currentTarget.value)}
-            maxLength={4}
+            maxLength={2}
             isLimitText
             extraClass={styles.input}
           />
@@ -107,7 +107,7 @@ export const StackPage: React.FC = () => {
             onClick={clearStack}
             disabled={!stack.peak() || loaderPosition !== null}
           />
-        </div>
+        </fieldset>
         <div className={styles.algorithm}>
           {stackElements.length > 0 &&
             stackElements.map((element, index) => (
@@ -116,7 +116,7 @@ export const StackPage: React.FC = () => {
                 key={element.id}
                 head={element.head}
                 state={element.state}
-                index={element.id}
+                index={index}
               />
             ))}
         </div>

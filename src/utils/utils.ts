@@ -16,3 +16,18 @@ export const getRandomNumber = (min: number, max: number) =>
 
 export const cloneState = <T>(state: T[]) =>
   state.map((element) => ({ ...element }));
+
+export const rightEnd = (num: number, forms: string[]) => {
+  num = Math.abs(num) % 100;
+  const numInTen = num % 10;
+  if (num > 10 && num < 20) {
+    return forms[2];
+  }
+  if (numInTen > 1 && numInTen < 5) {
+    return forms[1];
+  }
+  if (numInTen == 1) {
+    return forms[0];
+  }
+  return forms[2];
+};

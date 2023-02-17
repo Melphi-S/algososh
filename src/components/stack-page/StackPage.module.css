@@ -4,10 +4,11 @@
   align-items: center;
 }
 
-.options {
+.fieldset {
   display: flex;
   justify-content: center;
   gap: 12px;
+  border: none;
 }
 
 .input {

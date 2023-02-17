@@ -1,11 +1,12 @@
 import {ElementStates} from "./element-states";
+import React from "react";
 
 export type TCharElement = {
     char: string;
-    id: number;
+    id: number | string;
     state?: ElementStates;
-    head?: string;
-    tail?: string
+    head?: string | React.ReactElement;
+    tail?: string | React.ReactElement;
 }
 
 export type TBarElement = {

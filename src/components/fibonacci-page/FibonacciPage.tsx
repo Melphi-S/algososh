@@ -53,11 +53,11 @@ export const FibonacciPage: React.FC = () => {
         />
         <div className={styles.algorithm}>
           {fibArray.length > 0 &&
-            fibArray.map((element) => (
+            fibArray.map((element, index) => (
               <Circle
                 letter={element.char}
                 key={element.id}
-                index={element.id}
+                index={index}
               />
             ))}
         </div>

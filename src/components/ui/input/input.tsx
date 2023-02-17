@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./input.module.css";
+import { rightEnd } from "../../../utils/utils";
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {
   placeholder?: string;
@@ -18,8 +19,12 @@ export const Input: React.FC<InputProps> = ({
   ...rest
 }) => {
   const limitText =
-    type === "text"
-      ? `Максимум — ${maxLength} символа`
+    type === "text" && maxLength
+      ? `Максимум — ${maxLength} ${rightEnd(maxLength, [
+          "символ",
+          "символа",
+          "символов",
+        ])}`
       : `Введите число от ${min} до ${max}`;
 
   return (

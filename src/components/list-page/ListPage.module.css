@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+.fieldset {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.input {
+    width: 204px;
+}
+
+.button {
+    width: 175px;
+}
+
+.button_wide {
+    width: 362px;
+}
+
+.algorithm {
+    display: flex;
+    justify-content: center;
+    margin-top: 78px;
+    gap: 16px;
+}
+
+.elementWrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}

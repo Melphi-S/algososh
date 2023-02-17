@@ -118,11 +118,11 @@ export const QueuePage: React.FC = () => {
   return (
     <SolutionLayout title="Очередь">
       <div className={styles.wrapper}>
-        <div className={styles.options}>
+        <div className={styles.fieldset}>
           <Input
             value={value}
             onChange={(evt) => setValue(evt.currentTarget.value)}
-            maxLength={4}
+            maxLength={2}
             isLimitText
             extraClass={styles.input}
           />
@@ -160,7 +160,7 @@ export const QueuePage: React.FC = () => {
                 letter={element.char}
                 key={element.id}
                 state={element.state}
-                index={element.id}
+                index={index}
                 tail={element.tail}
                 head={element.head}
               />
