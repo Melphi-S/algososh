@@ -26,7 +26,7 @@ export const rightEnd = (num: number, forms: string[]) => {
   if (numInTen > 1 && numInTen < 5) {
     return forms[1];
   }
-  if (numInTen == 1) {
+  if (numInTen === 1) {
     return forms[0];
   }
   return forms[2];
