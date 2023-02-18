@@ -1,0 +1,27 @@
+.wrapper {
+  display: grid;
+  grid-template-areas: "input button"
+                         "algorithm algorithm";
+  justify-content: center;
+  gap: 48px 12px;
+  margin: 0 148px;
+}
+
+.input {
+  width: 377px;
+  grid-area: input;
+  justify-self: end;
+}
+
+.button {
+  grid-area: button;
+  width: 178px;
+}
+
+.algorithm {
+  display: grid;
+  grid-template-columns: repeat(10, max-content);
+  justify-content: center;
+  gap: 48px 16px;
+  grid-area: algorithm;
+}

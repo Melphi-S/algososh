@@ -4,7 +4,7 @@ import "./index.css";
 import "./fonts/fonts.css";
 import "./components/ui/common.css";
 import "./components/ui/box.css";
-import App from "./components/app/app";
+import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(

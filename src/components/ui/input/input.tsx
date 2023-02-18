@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./input.module.css";
+import { rightEnd } from "../../../utils/utils";
 
 interface InputProps extends React.HTMLProps<HTMLInputElement> {
   placeholder?: string;
@@ -8,18 +9,23 @@ interface InputProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 export const Input: React.FC<InputProps> = ({
-  placeholder = "Введите текст",
   extraClass = "",
   type = "text",
+  placeholder = type === "text" ? "Введите текст" : "Введите число",
   maxLength,
+  min,
   max,
   isLimitText = false,
   ...rest
 }) => {
   const limitText =
-    type === "text"
-      ? `Максимум — ${maxLength} символа`
-      : `Максимальное число — ${max}`;
+    type === "text" && maxLength
+      ? `Максимум — ${maxLength} ${rightEnd(maxLength, [
+          "символ",
+          "символа",
+          "символов",
+        ])}`
+      : `Введите число от ${min} до ${max}`;
 
   return (
     <div className={`${styles.content} ${extraClass}`}>
