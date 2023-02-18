@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import { FibonacciPage } from "../fibonacci-page/FibonacciPage";
 import { ListPage } from "../list-page/ListPage";
 import { MainPage } from "../main-page/main-page";
@@ -13,7 +13,7 @@ import styles from './app.module.css'
 function App() {
   return (
     <div className={styles.app}>
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route path="/" exact>
             <MainPage />
@@ -37,7 +37,7 @@ function App() {
             <ListPage />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
