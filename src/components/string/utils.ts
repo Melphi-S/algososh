@@ -1,4 +1,4 @@
-import {changeElementsState, swap, timeoutPromise} from "../../utils/utils";
+import {changeElementsState, cloneState, swap, timeoutPromise} from "../../utils/utils";
 import { TCharElement } from "../../types/sortingElements";
 import React from "react";
 import {DELAY_IN_MS} from "../../constants/delays";
@@ -14,11 +14,11 @@ export const reverse = async (
   while (start <= end) {
     await timeoutPromise(timeout);
     changeElementsState([elements[start], elements[end]], ElementStates.Changing);
-    stateCb([...elements]);
+    stateCb(cloneState(elements));
     await timeoutPromise(DELAY_IN_MS);
     swap(elements, start, end);
     changeElementsState([elements[start], elements[end]], ElementStates.Modified);
-    stateCb([...elements]);
+    stateCb(cloneState(elements));
     start++;
     end--;
   }
