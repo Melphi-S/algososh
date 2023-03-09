@@ -8,7 +8,6 @@ import { Button } from "../ui/button/button";
 import {assembleElementsArray, reverse} from "./utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
-import { ElementStates } from "../../types/element-states";
 import { TCharElement } from "../../types/sortingElements";
 
 import styles from "./StringComponent.module.css";

@@ -1,5 +1,6 @@
 import {
-  changeElementsState, cloneState,
+  changeElementsState,
+  cloneState,
   getRandomNumber,
   swap,
   timeoutPromise,
@@ -12,7 +13,7 @@ import { ElementStates } from "../../types/element-states";
 export const sortBubbleWay = async (
   array: TBarElement[],
   direction: Direction,
-  stateCb: React.Dispatch<React.SetStateAction<TBarElement[]>>,
+  stateCb: React.Dispatch<React.SetStateAction<TBarElement[]>> | (() => void),
   timeout: number
 ) => {
   for (let j = array.length - 1; j >= 0; j--) {
@@ -41,7 +42,7 @@ export const sortBubbleWay = async (
 export const sortSelectionWay = async (
   array: TBarElement[],
   direction: Direction,
-  stateCb: React.Dispatch<React.SetStateAction<TBarElement[]>>,
+  stateCb: React.Dispatch<React.SetStateAction<TBarElement[]>> | (() => void),
   timeout: number
 ) => {
   for (let i = 0; i < array.length - 1; i++) {
@@ -81,7 +82,9 @@ export const sortSelectionWay = async (
     }
     stateCb(cloneState(array));
   }
-  changeElementsState([array[array.length - 1]], ElementStates.Modified);
+  if (array.length) {
+    changeElementsState([array[array.length - 1]], ElementStates.Modified);
+  }
   stateCb(cloneState(array));
 };
 
