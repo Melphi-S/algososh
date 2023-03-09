@@ -5,7 +5,7 @@ import { Input } from "../ui/input/input";
 import { Circle } from "../ui/circle/circle";
 import { Button } from "../ui/button/button";
 
-import { reverse } from "./utils";
+import {assembleElementsArray, reverse} from "./utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
 import { ElementStates } from "../../types/element-states";
@@ -20,11 +20,7 @@ export const StringComponent: React.FC = () => {
 
   const visualizeAlgorithm = async () => {
     setIsLoader(true);
-    const initialOrder: TCharElement[] = value.split("").map((char, index) => ({
-      char,
-      id: index,
-      state: ElementStates.Default,
-    }));
+    const initialOrder: TCharElement[] = assembleElementsArray(value);
     setSortingElements(initialOrder);
     await reverse(initialOrder, setSortingElements, SHORT_DELAY_IN_MS);
     setIsLoader(false);
