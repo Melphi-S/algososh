@@ -5,7 +5,11 @@ import { Button } from "../ui/button/button";
 import { Input } from "../ui/input/input";
 import { Circle } from "../ui/circle/circle";
 
-import {changeElementsState, cloneState, timeoutPromise} from "../../utils/utils";
+import {
+  changeElementsState,
+  cloneState,
+  timeoutPromise,
+} from "../../utils/utils";
 import { Stack } from "./utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
@@ -76,7 +80,7 @@ export const StackPage: React.FC = () => {
 
   return (
     <SolutionLayout title="Стек">
-      <div className={styles.wrapper}>
+      <div data-testid="stack" className={styles.wrapper}>
         <fieldset className={styles.fieldset}>
           <Input
             value={value}
@@ -90,7 +94,9 @@ export const StackPage: React.FC = () => {
               text="Добавить"
               extraClass={styles.button}
               onClick={visualizePushing}
-              disabled={!value || loaderPosition !== null || stack.getSize() >= 10}
+              disabled={
+                !value || loaderPosition !== null || stack.getSize() >= 10
+              }
               isLoader={loaderPosition === Action.Add}
             />
             <Button

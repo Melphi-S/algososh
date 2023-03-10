@@ -1,17 +1,17 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
-import {SolutionLayout} from "../ui/solution-layout/solution-layout";
-import {Input} from "../ui/input/input";
-import {Button} from "../ui/button/button";
-import {Circle} from "../ui/circle/circle";
+import { SolutionLayout } from "../ui/solution-layout/solution-layout";
+import { Input } from "../ui/input/input";
+import { Button } from "../ui/button/button";
+import { Circle } from "../ui/circle/circle";
 
-import {Queue} from "./utils";
-import {cloneState, timeoutPromise} from "../../utils/utils";
-import {SHORT_DELAY_IN_MS} from "../../constants/delays";
+import { Queue } from "./utils";
+import { cloneState, timeoutPromise } from "../../utils/utils";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
-import {TCharElement} from "../../types/sortingElements";
-import {ElementStates} from "../../types/element-states";
-import {Action} from "../../types/buttonEnums";
+import { TCharElement } from "../../types/sortingElements";
+import { ElementStates } from "../../types/element-states";
+import { Action } from "../../types/buttonEnums";
 
 import styles from "../stack-page/StackPage.module.css";
 
@@ -117,7 +117,7 @@ export const QueuePage: React.FC = () => {
 
   return (
     <SolutionLayout title="Очередь">
-      <div className={styles.wrapper}>
+      <div data-testid="queue" className={styles.wrapper}>
         <div className={styles.fieldset}>
           <Input
             value={value}

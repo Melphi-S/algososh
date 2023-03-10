@@ -38,7 +38,7 @@ export const SortingPage: React.FC = () => {
 
   return (
     <SolutionLayout title="Сортировка массива">
-      <div className={styles.wrapper}>
+      <div data-testid="sorting" className={styles.wrapper}>
         <div className={styles.radioButtons}>
           <RadioInput
             name="sortingWay"
