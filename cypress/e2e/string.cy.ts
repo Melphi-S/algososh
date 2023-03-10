@@ -81,5 +81,8 @@ describe("String page", () => {
         cy.wrap(circle).should("contain", "3");
       }
     });
+
+    cy.get(`[data-testid="input"]`).should("have.value", "");
+    cy.get(`[data-testid="button"]`).should("be.disabled");
   });
 });
