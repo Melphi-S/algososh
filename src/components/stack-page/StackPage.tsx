@@ -88,6 +88,7 @@ export const StackPage: React.FC = () => {
             maxLength={4}
             isLimitText
             extraClass={styles.input}
+            data-testid="input"
           />
           <div className={styles.directionButtons}>
             <Button
@@ -98,6 +99,7 @@ export const StackPage: React.FC = () => {
                 !value || loaderPosition !== null || stack.getSize() >= 10
               }
               isLoader={loaderPosition === Action.Add}
+              data-testid="add-button"
             />
             <Button
               text="Удалить"
@@ -105,6 +107,7 @@ export const StackPage: React.FC = () => {
               onClick={visualizePopping}
               disabled={!stack.peak() || loaderPosition !== null}
               isLoader={loaderPosition === Action.Delete}
+              data-testid="delete-button"
             />
           </div>
           <Button
@@ -112,6 +115,7 @@ export const StackPage: React.FC = () => {
             extraClass={styles.button}
             onClick={clearStack}
             disabled={!stack.peak() || loaderPosition !== null}
+            data-testid="clear-button"
           />
         </fieldset>
         <div className={styles.algorithm}>

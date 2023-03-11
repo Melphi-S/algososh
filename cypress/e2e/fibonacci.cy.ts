@@ -1,12 +1,12 @@
 describe("Fibonacci page", () => {
+  beforeEach(() => cy.visit("/fibonacci"));
+
   it("should block button while input is empty", function () {
-    cy.visit("/fibonacci");
     cy.get(`[data-testid="input"]`).should("have.value", "");
     cy.get(`[data-testid="button"]`).should("be.disabled");
   });
 
   it("should block button while input is empty", function () {
-    cy.visit("/fibonacci");
     cy.get('[data-testid="input"]').type("7");
     cy.get('[data-testid="button"]').click();
 
@@ -35,5 +35,8 @@ describe("Fibonacci page", () => {
 
     cy.get("@circle").should("have.length", 8);
     cy.get('[data-testid="circle-core"]').eq(7).should("contain", "13");
+
+    cy.get(`[data-testid="input"]`).should("have.value", "");
+    cy.get(`[data-testid="button"]`).should("be.disabled");
   });
 });

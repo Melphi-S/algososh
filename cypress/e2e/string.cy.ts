@@ -1,14 +1,14 @@
 import { CircleBorder } from "../circleBorderEnum";
 
 describe("String page", () => {
+  beforeEach(() => cy.visit("/recursion"));
+
   it("should block button while input is empty", function () {
-    cy.visit("/recursion");
     cy.get(`[data-testid="input"]`).should("have.value", "");
     cy.get(`[data-testid="button"]`).should("be.disabled");
   });
 
   it("should visualize reverse algorithm correctly", function () {
-    cy.visit("/recursion");
     cy.get('[data-testid="input"]').type("12345");
     cy.get('[data-testid="button"]').click();
 
