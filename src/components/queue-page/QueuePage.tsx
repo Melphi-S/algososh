@@ -125,6 +125,7 @@ export const QueuePage: React.FC = () => {
             maxLength={4}
             isLimitText
             extraClass={styles.input}
+            data-testid="input"
           />
           <div className={styles.directionButtons}>
             <Button
@@ -137,6 +138,7 @@ export const QueuePage: React.FC = () => {
                 !value
               }
               isLoader={loaderPosition === Action.Add}
+              data-testid="add-button"
             />
             <Button
               text="Удалить"
@@ -144,6 +146,7 @@ export const QueuePage: React.FC = () => {
               onClick={visualizeDequeuing}
               disabled={queue.getLength() === 0 || loaderPosition !== null}
               isLoader={loaderPosition === Action.Delete}
+              data-testid="delete-button"
             />
           </div>
           <Button
@@ -151,6 +154,7 @@ export const QueuePage: React.FC = () => {
             extraClass={styles.button}
             onClick={clearQueue}
             disabled={queue.getLength() === 0 || loaderPosition !== null}
+            data-testid="clear-button"
           />
         </div>
         <div className={styles.algorithm}>
