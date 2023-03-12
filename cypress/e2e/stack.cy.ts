@@ -1,49 +1,49 @@
-import { CircleBorder } from "../circleBorderEnum";
+import {addButton, CircleBorder, circleCore, clearButton, deleteButton, head, index, valueInput} from "../const";
 
 describe("Stack page", () => {
   beforeEach(() => cy.visit("/stack"));
 
   it("should block the add button while the input is empty", function () {
-    cy.get(`[data-testid="input"]`).should("have.value", "");
-    cy.get(`[data-testid="add-button"]`).should("be.disabled");
+    cy.get(valueInput).should("have.value", "");
+    cy.get(addButton).should("be.disabled");
   });
 
   it("should visualize an element adding in a stack correctly", function () {
-    cy.get('[data-testid="input"]').type("1");
-    cy.get('[data-testid="add-button"]').click();
+    cy.get(valueInput).type("1");
+    cy.get(addButton).click();
 
-    cy.get('[data-testid="circle-core"]').as("circle");
+    cy.get(circleCore).as("circle");
 
     cy.get("@circle").should("have.length", 1);
-    cy.get('[data-testid="circle-core"]')
+    cy.get(circleCore)
       .eq(0)
       .should("contain", "1")
       .and("have.css", "border", CircleBorder.Changing);
-    cy.get('[data-testid="head"]').eq(0).should("contain", "top");
-    cy.get('[data-testid="index"]').eq(0).should("contain", "0");
-    cy.get('[data-testid="circle-core"]')
+    cy.get(head).eq(0).should("contain", "top");
+    cy.get(index).eq(0).should("contain", "0");
+    cy.get(circleCore)
       .eq(0)
       .should("have.css", "border", CircleBorder.Default);
 
-    cy.get('[data-testid="input"]').type("2");
-    cy.get('[data-testid="add-button"]').click();
+    cy.get(valueInput).type("2");
+    cy.get(addButton).click();
 
     cy.get("@circle").should("have.length", 2);
-    cy.get('[data-testid="head"]').eq(0).should("not.contain", "top");
-    cy.get('[data-testid="head"]').eq(1).should("contain", "top");
-    cy.get('[data-testid="index"]').eq(1).should("contain", "1");
+    cy.get(head).eq(0).should("not.contain", "top");
+    cy.get(head).eq(1).should("contain", "top");
+    cy.get(index).eq(1).should("contain", "1");
   });
 
   it("should visualize an element deleting from a stack correctly", function () {
-    cy.get('[data-testid="input"]').type("1");
-    cy.get('[data-testid="add-button"]').click();
+    cy.get(valueInput).type("1");
+    cy.get(addButton).click();
 
-    cy.get('[data-testid="circle-core"]').as("circle");
+    cy.get(circleCore).as("circle");
     cy.get("@circle").should("have.length", 1);
 
-    cy.get('[data-testid="delete-button"]').click();
+    cy.get(deleteButton).click();
 
-    cy.get('[data-testid="circle-core"]')
+    cy.get(circleCore)
       .eq(0)
       .should("have.css", "border", CircleBorder.Changing);
 
@@ -51,19 +51,19 @@ describe("Stack page", () => {
   });
 
   it("should clear a stack", function () {
-    cy.get('[data-testid="input"]').type("1");
-    cy.get('[data-testid="add-button"]').click();
+    cy.get(valueInput).type("1");
+    cy.get(addButton).click();
 
-    cy.get('[data-testid="input"]').type("2");
-    cy.get('[data-testid="add-button"]').click();
+    cy.get(valueInput).type("2");
+    cy.get(addButton).click();
 
-    cy.get('[data-testid="circle-core"]').as("circle");
+    cy.get(circleCore).as("circle");
     cy.get("@circle").should("have.length", 2);
 
-    cy.get('[data-testid="clear-button"]').click();
+    cy.get(clearButton).click();
 
     cy.get("@circle").should("have.length", 0);
-    cy.get(`[data-testid="delete-button"]`).should("be.disabled");
-    cy.get(`[data-testid="clear-button"]`).should("be.disabled");
+    cy.get(deleteButton).should("be.disabled");
+    cy.get(clearButton).should("be.disabled");
   });
 });

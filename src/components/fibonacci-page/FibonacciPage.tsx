@@ -44,7 +44,7 @@ export const FibonacciPage: React.FC = () => {
           max={19}
           isLimitText
           extraClass={styles.input}
-          data-testid="input"
+          data-testid="value-input"
         />
         <Button
           onClick={visualizeAlgorithm}

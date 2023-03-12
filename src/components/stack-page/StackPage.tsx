@@ -88,7 +88,7 @@ export const StackPage: React.FC = () => {
             maxLength={4}
             isLimitText
             extraClass={styles.input}
-            data-testid="input"
+            data-testid="value-input"
           />
           <div className={styles.directionButtons}>
             <Button

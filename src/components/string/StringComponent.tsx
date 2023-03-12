@@ -35,7 +35,7 @@ export const StringComponent: React.FC = () => {
           maxLength={11}
           isLimitText
           extraClass={styles.input}
-          data-testid="input"
+          data-testid="value-input"
         />
         <Button
           onClick={visualizeAlgorithm}

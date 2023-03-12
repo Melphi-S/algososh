@@ -1,18 +1,18 @@
-import { CircleBorder } from "../circleBorderEnum";
+import {button, CircleBorder, circleCore, valueInput} from "../const";
 
 describe("String page", () => {
   beforeEach(() => cy.visit("/recursion"));
 
   it("should block the button while the input is empty", function () {
-    cy.get(`[data-testid="input"]`).should("have.value", "");
-    cy.get(`[data-testid="button"]`).should("be.disabled");
+    cy.get(valueInput).should("have.value", "");
+    cy.get(button).should("be.disabled");
   });
 
   it("should visualize the reverse algorithm correctly", function () {
-    cy.get('[data-testid="input"]').type("12345");
-    cy.get('[data-testid="button"]').click();
+    cy.get(valueInput).type("12345");
+    cy.get(button).click();
 
-    cy.get('[data-testid="circle-core"]').as("circle");
+    cy.get(circleCore).as("circle");
 
     cy.get("@circle")
       .should("have.length", 5)
@@ -82,7 +82,7 @@ describe("String page", () => {
       }
     });
 
-    cy.get(`[data-testid="input"]`).should("have.value", "");
-    cy.get(`[data-testid="button"]`).should("be.disabled");
+    cy.get(valueInput).should("have.value", "");
+    cy.get(button).should("be.disabled");
   });
 });
