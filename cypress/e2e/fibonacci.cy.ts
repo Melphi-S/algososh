@@ -1,12 +1,12 @@
 describe("Fibonacci page", () => {
   beforeEach(() => cy.visit("/fibonacci"));
 
-  it("should block button while input is empty", function () {
+  it("should block the button while the input is empty", function () {
     cy.get(`[data-testid="input"]`).should("have.value", "");
     cy.get(`[data-testid="button"]`).should("be.disabled");
   });
 
-  it("should block button while input is empty", function () {
+  it("should visualize the algorithm correctly", function () {
     cy.get('[data-testid="input"]').type("7");
     cy.get('[data-testid="button"]').click();
 

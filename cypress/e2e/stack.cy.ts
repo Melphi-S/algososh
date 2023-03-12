@@ -3,12 +3,12 @@ import { CircleBorder } from "../circleBorderEnum";
 describe("Stack page", () => {
   beforeEach(() => cy.visit("/stack"));
 
-  it("should block add button while input is empty", function () {
+  it("should block the add button while the input is empty", function () {
     cy.get(`[data-testid="input"]`).should("have.value", "");
     cy.get(`[data-testid="add-button"]`).should("be.disabled");
   });
 
-  it("should visualize adding an element in a stack correctly", function () {
+  it("should visualize an element adding in a stack correctly", function () {
     cy.get('[data-testid="input"]').type("1");
     cy.get('[data-testid="add-button"]').click();
 
@@ -34,7 +34,7 @@ describe("Stack page", () => {
     cy.get('[data-testid="index"]').eq(1).should("contain", "1");
   });
 
-  it("should visualize deleting an element from a stack correctly", function () {
+  it("should visualize an element deleting from a stack correctly", function () {
     cy.get('[data-testid="input"]').type("1");
     cy.get('[data-testid="add-button"]').click();
 

@@ -232,6 +232,7 @@ export const ListPage: React.FC = () => {
             extraClass={styles.input}
             value={value}
             onChange={(evt) => setValue(evt.currentTarget.value)}
+            data-testid="value-input"
           />
           <Button
             text="Добавить в head"
@@ -241,6 +242,7 @@ export const ListPage: React.FC = () => {
               list.getSize() === 10 || loaderPosition !== null || !value
             }
             isLoader={loaderPosition === Action.AddAtHead}
+            data-testid="add-head-button"
           />
           <Button
             text="Добавить в tail"
@@ -250,6 +252,7 @@ export const ListPage: React.FC = () => {
               list.getSize() === 10 || loaderPosition !== null || !value
             }
             isLoader={loaderPosition === Action.AddAtTail}
+            data-testid="add-tail-button"
           />
           <Button
             text="Удалить из head"
@@ -257,6 +260,7 @@ export const ListPage: React.FC = () => {
             onClick={() => visualizeRemoving(0, Action.DeleteFromHead)}
             disabled={list.getSize() === 0 || loaderPosition !== null}
             isLoader={loaderPosition === Action.DeleteFromHead}
+            data-testid="delete-head-button"
           />
           <Button
             text="Удалить из tail"
@@ -266,6 +270,7 @@ export const ListPage: React.FC = () => {
             }
             disabled={list.getSize() === 0 || loaderPosition !== null}
             isLoader={loaderPosition === Action.DeleteFromTail}
+            data-testid="delete-tail-button"
           />
         </fieldset>
         <fieldset className={styles.fieldset}>
@@ -279,6 +284,7 @@ export const ListPage: React.FC = () => {
             placeholder="Введите индекс"
             value={indexValue}
             onChange={(evt) => setIndexValue(evt.currentTarget.value)}
+            data-testid="index-input"
           />
           <Button
             text="Добавить по индексу"
@@ -292,6 +298,7 @@ export const ListPage: React.FC = () => {
               !value
             }
             isLoader={loaderPosition === Action.AddAt}
+            data-testid="add-index-button"
           />
           <Button
             text="Удалить по индексу"
@@ -307,6 +314,7 @@ export const ListPage: React.FC = () => {
               loaderPosition !== null
             }
             isLoader={loaderPosition === Action.DeleteFrom}
+            data-testid="delete-index-button"
           />
         </fieldset>
         <div className={styles.algorithm}>

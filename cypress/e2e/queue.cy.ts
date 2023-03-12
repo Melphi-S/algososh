@@ -8,7 +8,7 @@ describe("Queue page", () => {
     cy.get(`[data-testid="add-button"]`).should("be.disabled");
   });
 
-  it("should visualize adding an element in a queue correctly", function () {
+  it("should visualize an element adding in a queue correctly", function () {
     cy.get('[data-testid="input"]').type("1");
     cy.get('[data-testid="add-button"]').click();
 
@@ -41,7 +41,7 @@ describe("Queue page", () => {
       .should("have.css", "border", CircleBorder.Default);
   });
 
-  it("should visualize deleting an element from a queue correctly", function () {
+  it("should visualize an element deleting from a queue correctly", function () {
     cy.get('[data-testid="input"]').type("1");
     cy.get('[data-testid="add-button"]').click();
 
