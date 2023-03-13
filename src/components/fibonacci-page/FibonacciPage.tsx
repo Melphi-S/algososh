@@ -20,6 +20,7 @@ export const FibonacciPage: React.FC = () => {
 
   const visualizeAlgorithm = async () => {
     setIsLoader(true);
+    setValue("");
     const finalArray = generateFibArray(Number(value)).map((char, index) => ({
       char: String(char),
       id: index,
@@ -34,7 +35,7 @@ export const FibonacciPage: React.FC = () => {
 
   return (
     <SolutionLayout title="Последовательность Фибоначчи">
-      <div className={styles.wrapper}>
+      <div data-testid="fibonacci" className={styles.wrapper}>
         <Input
           value={value}
           onChange={(evt) => setValue(evt.currentTarget.value)}
@@ -43,6 +44,7 @@ export const FibonacciPage: React.FC = () => {
           max={19}
           isLimitText
           extraClass={styles.input}
+          data-testid="value-input"
         />
         <Button
           onClick={visualizeAlgorithm}
@@ -50,15 +52,12 @@ export const FibonacciPage: React.FC = () => {
           extraClass={styles.button}
           isLoader={isLoader}
           disabled={Number(value) < 0 || Number(value) > 19 || value === ""}
+          data-testid="button"
         />
         <div className={styles.algorithm}>
           {fibArray.length > 0 &&
             fibArray.map((element, index) => (
-              <Circle
-                letter={element.char}
-                key={element.id}
-                index={index}
-              />
+              <Circle letter={element.char} key={element.id} index={index} />
             ))}
         </div>
       </div>

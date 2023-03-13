@@ -5,5 +5,4 @@ export const randomArrayOptions: TRandomArrayOptions = {
     maxNumber: 100,
     minLength: 3,
     maxLength: 17
-
 }

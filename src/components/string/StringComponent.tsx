@@ -5,10 +5,9 @@ import { Input } from "../ui/input/input";
 import { Circle } from "../ui/circle/circle";
 import { Button } from "../ui/button/button";
 
-import { reverse } from "./utils";
+import { assembleElementsArray, reverse } from "./utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
-import { ElementStates } from "../../types/element-states";
 import { TCharElement } from "../../types/sortingElements";
 
 import styles from "./StringComponent.module.css";
@@ -20,11 +19,8 @@ export const StringComponent: React.FC = () => {
 
   const visualizeAlgorithm = async () => {
     setIsLoader(true);
-    const initialOrder: TCharElement[] = value.split("").map((char, index) => ({
-      char,
-      id: index,
-      state: ElementStates.Default,
-    }));
+    setValue("");
+    const initialOrder: TCharElement[] = assembleElementsArray(value);
     setSortingElements(initialOrder);
     await reverse(initialOrder, setSortingElements, SHORT_DELAY_IN_MS);
     setIsLoader(false);
@@ -32,13 +28,14 @@ export const StringComponent: React.FC = () => {
 
   return (
     <SolutionLayout title="Строка">
-      <div className={styles.wrapper}>
+      <div data-testid="recursion" className={styles.wrapper}>
         <Input
           value={value}
           onChange={(evt) => setValue(evt.currentTarget.value)}
           maxLength={11}
           isLimitText
           extraClass={styles.input}
+          data-testid="value-input"
         />
         <Button
           onClick={visualizeAlgorithm}
@@ -46,6 +43,7 @@ export const StringComponent: React.FC = () => {
           extraClass={styles.button}
           isLoader={isLoader}
           disabled={!value}
+          data-testid="button"
         />
         <div className={styles.algorithm}>
           {sortingElements.length > 0 &&

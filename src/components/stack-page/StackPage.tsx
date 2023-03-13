@@ -5,7 +5,11 @@ import { Button } from "../ui/button/button";
 import { Input } from "../ui/input/input";
 import { Circle } from "../ui/circle/circle";
 
-import {changeElementsState, cloneState, timeoutPromise} from "../../utils/utils";
+import {
+  changeElementsState,
+  cloneState,
+  timeoutPromise,
+} from "../../utils/utils";
 import { Stack } from "./utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 
@@ -76,7 +80,7 @@ export const StackPage: React.FC = () => {
 
   return (
     <SolutionLayout title="Стек">
-      <div className={styles.wrapper}>
+      <div data-testid="stack" className={styles.wrapper}>
         <fieldset className={styles.fieldset}>
           <Input
             value={value}
@@ -84,14 +88,18 @@ export const StackPage: React.FC = () => {
             maxLength={4}
             isLimitText
             extraClass={styles.input}
+            data-testid="value-input"
           />
           <div className={styles.directionButtons}>
             <Button
               text="Добавить"
               extraClass={styles.button}
               onClick={visualizePushing}
-              disabled={!value || loaderPosition !== null || stack.getSize() >= 10}
+              disabled={
+                !value || loaderPosition !== null || stack.getSize() >= 10
+              }
               isLoader={loaderPosition === Action.Add}
+              data-testid="add-button"
             />
             <Button
               text="Удалить"
@@ -99,6 +107,7 @@ export const StackPage: React.FC = () => {
               onClick={visualizePopping}
               disabled={!stack.peak() || loaderPosition !== null}
               isLoader={loaderPosition === Action.Delete}
+              data-testid="delete-button"
             />
           </div>
           <Button
@@ -106,6 +115,7 @@ export const StackPage: React.FC = () => {
             extraClass={styles.button}
             onClick={clearStack}
             disabled={!stack.peak() || loaderPosition !== null}
+            data-testid="clear-button"
           />
         </fieldset>
         <div className={styles.algorithm}>
